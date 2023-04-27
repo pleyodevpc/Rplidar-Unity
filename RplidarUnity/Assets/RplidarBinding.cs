@@ -18,7 +18,7 @@ public struct LidarData
 public class Settings
 {
     public string port;
-    public int baudInt => (int)baud;
+    public uint baudInt => (uint)baud;
     public Baud baud;
     public enum Baud
     {
@@ -45,7 +45,7 @@ public class RplidarBinding
     [DllImport("RplidarCpp.dll")]
     public static extern int OnConnect(string port);
     [DllImport("RplidarCpp.dll")]
-    public static extern int OnConnectBaud(string port, int baudrate);
+    public static extern int OnConnectBaud(string port, uint baudrate);
     public static int OnConnect(Settings settings) => OnConnectBaud(settings.port, settings.baudInt);
     [DllImport("RplidarCpp.dll")]
     public static extern bool OnDisconnect();

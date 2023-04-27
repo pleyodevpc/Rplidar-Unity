@@ -36,7 +36,7 @@ public class RplidarTest : MonoBehaviour
             }
 
             int result //= RplidarBinding.OnConnect(port);
-            = RplidarBinding.OnConnect(_settings);
+            = RplidarBinding.OnConnect(_settings.port);
 
             Debug.Log("Connect on " + port + " result:" + result);
         });
