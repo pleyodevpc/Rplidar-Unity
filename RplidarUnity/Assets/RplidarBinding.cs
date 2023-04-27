@@ -6,7 +6,7 @@ using System.IO;
 
 using System;
 
-[StructLayout(LayoutKind.Sequential,CharSet = CharSet.Ansi)]
+[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
 public struct LidarData
 {
     public byte syncBit;
@@ -14,7 +14,19 @@ public struct LidarData
     public float distant;
     public uint quality;
 };
-
+[System.Serializable]
+public class Settings
+{
+    public string port;
+    public int baudInt => (int)baud;
+    public Baud baud;
+    public enum Baud
+    {
+        E9 = 9600,
+        E115 = 115200,
+        E256 = 256000
+    }
+}
 public class RplidarBinding
 {
 
@@ -32,6 +44,9 @@ public class RplidarBinding
 
     [DllImport("RplidarCpp.dll")]
     public static extern int OnConnect(string port);
+    [DllImport("RplidarCpp.dll")]
+    public static extern int OnConnect(string port, int baudrate);
+    public static int OnConnect(Settings settings) => OnConnect(settings.port, settings.baudInt);
     [DllImport("RplidarCpp.dll")]
     public static extern bool OnDisconnect();
 
