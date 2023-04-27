@@ -156,6 +156,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\Inc\hal\types.h" />
+    <ClInclude Include="..\Inc\sl_lidar.h" />
+    <ClInclude Include="..\Inc\sl_lidar_cmd.h" />
+    <ClInclude Include="..\Inc\sl_lidar_driver.h" />
+    <ClInclude Include="..\Inc\sl_lidar_protocol.h" />
+    <ClInclude Include="..\Inc\sl_types.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>

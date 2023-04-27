@@ -24,6 +24,21 @@
     <ClInclude Include="..\Inc\hal\types.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="..\Inc\sl_lidar.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Inc\sl_lidar_cmd.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Inc\sl_lidar_driver.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Inc\sl_lidar_protocol.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Inc\sl_types.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
