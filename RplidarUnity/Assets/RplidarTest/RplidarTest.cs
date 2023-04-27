@@ -100,21 +100,21 @@ public class RplidarTest : MonoBehaviour
     }
     public static void CleanLidarExit(bool log = false)
     {
-        bool args = RplidarBinding.EndScan();
+        bool scan = RplidarBinding.EndScan();
         bool mot = RplidarBinding.EndMotor();
         bool disc = RplidarBinding.OnDisconnect();
         bool drive = RplidarBinding.ReleaseDrive();
         if (log)
-            string.Format("Scan ; {0}, Motor : {1}, Disconnecte {2}, ReleaseDrive{3}", args, mot, disc, drive);
+            Debug.Log(string.Format("Scan ; {0}, Motor : {1}, Disconnecte {2}, ReleaseDrive{3}", scan, mot, disc, drive));
     }
-void DrawButton(string label, Action callback)
-{
-    if (GUILayout.Button(label, GUILayout.Width(200), GUILayout.Height(75)))
+    void DrawButton(string label, Action callback)
     {
-        if (callback != null)
+        if (GUILayout.Button(label, GUILayout.Width(200), GUILayout.Height(75)))
         {
-            callback.Invoke();
+            if (callback != null)
+            {
+                callback.Invoke();
+            }
         }
     }
-}
 }
