@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-
+using System.IO;
 
 public class RplidarTest : MonoBehaviour
 {
@@ -14,17 +14,16 @@ public class RplidarTest : MonoBehaviour
     {
         data = new LidarData[720];
     }
-
+    StringWriter stringWriter;
     // Use this for initialization
     void Start()
     {
-    
+        StdoutToLogFile();
     }
 
-    // Update is called once per frame
-    void Update()
+    public static void StdoutToLogFile()
     {
-
+        RplidarBinding.RedirectPrintToFile("C:\\Users\\Utilisateur\\Documents\\GitHub\\Rplidar-UnityWrapper\\RplidarUnity\\Assets\\log.txt");
     }
 
     private void OnGUI()
@@ -107,6 +106,7 @@ public class RplidarTest : MonoBehaviour
         bool drive = RplidarBinding.ReleaseDrive();
         if (log)
             Debug.Log(string.Format("Scan ; {0}, Motor : {1}, Disconnecte {2}, ReleaseDrive{3}", scan, mot, disc, drive));
+        //RplidarBinding.CancelRedirectPrint();
     }
     void DrawButton(string label, Action callback)
     {

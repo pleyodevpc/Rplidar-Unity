@@ -43,6 +43,10 @@ public class RplidarBinding
 
 
     [DllImport("RplidarCpp.dll")]
+    public static extern int CancelRedirectPrint();
+    [DllImport("RplidarCpp.dll")]
+    public static extern int RedirectPrintToFile(string file_path);
+    [DllImport("RplidarCpp.dll")]
     public static extern int OnConnect(string port);
     [DllImport("RplidarCpp.dll")]
     public static extern int OnConnectBaud(string port, uint baudrate);

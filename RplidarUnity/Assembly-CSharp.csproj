@@ -68,6 +68,7 @@
     <Compile Include="Assets\RplidarTest\RplidarMap.cs" />
     <Compile Include="Assets\RplidarTest\RplidarTest.cs" />
     <Compile Include="Assets\Scale.cs" />
+    <None Include="Assets\log.txt" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/Utilisateur/Documents/GitHub/Rplidar-UnityWrapper/RplidarUnity/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
