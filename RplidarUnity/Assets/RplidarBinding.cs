@@ -50,6 +50,9 @@ public class RplidarBinding
     public static extern int OnConnect(string port);
     [DllImport("RplidarCpp.dll")]
     public static extern int OnConnectBaud(string port, uint baudrate);
+
+    [DllImport("RplidarCpp.dll")]
+    public static extern int GetLDataArraySize();
     public static int OnConnect(Settings settings) => OnConnectBaud(settings.port, settings.baudInt);
     [DllImport("RplidarCpp.dll")]
     public static extern bool OnDisconnect();

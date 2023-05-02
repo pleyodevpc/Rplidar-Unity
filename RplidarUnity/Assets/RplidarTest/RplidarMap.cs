@@ -11,7 +11,9 @@ public class RplidarMap : MonoBehaviour
     public float TimeToStartRecord = 3f;
     public bool filter = false;
     [Tooltip("(3,10);(0,30) For Trampo space usual lidar spot")]
-    public Vector2 filteringDistance, filteringAngle;
+    public Vector2 filteringDistance;
+
+    public Vector2[] filteringAngle;
 
     public GameObject _prefab;
     public bool m_onscan = false;
@@ -37,11 +39,11 @@ public class RplidarMap : MonoBehaviour
         RplidarBinding.ReleaseDrive();
         m_meshfilter = GetComponent<MeshFilter>();
 
-        m_data = new LidarData[720];
+        m_data = new LidarData[RplidarBinding.GetLDataArraySize()];
 
         m_ind = new List<int>();
         m_vert = new List<Vector3>();
-        for (int i = 0; i < 720; i++)
+        for (int i = 0; i < RplidarBinding.GetLDataArraySize(); i++)
         {
             m_ind.Add(i);
             var cross = Instantiate(_prefab, Vector3.zero, Quaternion.identity, transform);
@@ -72,7 +74,7 @@ public class RplidarMap : MonoBehaviour
         if (!filter)
             return true;
         return pos.magnitude > filteringDistance.x && pos.magnitude < filteringDistance.y
-            && theta > filteringAngle.x && theta < filteringAngle.y;
+            && filteringAngle.Any(filter=> theta > filter.x && theta < filter.y) ;
     }
 
     void OnDestroy()
@@ -101,7 +103,7 @@ public class RplidarMap : MonoBehaviour
             _lastUpdate = Time.time;
             int NbOfPointsFiltered = 0;
             m_vert.Clear();
-            for (int i = 0; i < 720; i++)
+            for (int i = 0; i < RplidarBinding.GetLDataArraySize(); i++)
             {
                 float theta = m_data[i].theta;
                 Vector3 Pos = Quaternion.Euler(0, 0, (float)theta) * Vector3.right * m_data[i].distant * 0.01f;
@@ -128,7 +130,7 @@ public class RplidarMap : MonoBehaviour
         }
     }
 
-    /*void GenMesh()
+    /*void GenMesh()    
     {
         while (true)
         {
